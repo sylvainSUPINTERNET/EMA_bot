@@ -4,6 +4,7 @@ df = None
 
 EMA_SMALL_PERIOD_DAYS = 12
 EMA_BIG_PERIOD_DAYS = 26
+MAX_MEMORY_ENTRIES = 200
 
 def test(new_value):
   global df
@@ -12,7 +13,7 @@ def test(new_value):
       df = pd.DataFrame(data={"receivedAt": [f"DATE {new_value}"], "price": new_value, "12_EMA": None, "26_EMA": None})
 
   if df is not None:
-      if df.shape[0] >= 50 :
+      if df.shape[0] >= MAX_MEMORY_ENTRIES :
       # dataFrame = pd.DataFrame(data={"receivedAt": [f"DATE {new_value_2}"], "price": new_value_2, "12_EMA": None, "26_EMA": None})
         new_dataframe = pd.DataFrame(data={"receivedAt": [f"DATE {new_value}"], "price": new_value, "12_EMA": None, "26_EMA": None})
         df = pd.concat([df, new_dataframe])
